@@ -75,15 +75,8 @@ bool* multithreaded_atkins_sieve(const int n = 100, int blockSize = 256) {
 
     // this uses n threads but can be optimised for sqrtN threads
 
-  //cudaMemcpy(primes, d_primes, size, cudaMemcpyDeviceToHost);
 
-  /*
-  for (int i = 0; i < n; i++) {
-      if (primes[i]) {
-          std::cout << "error";
-      }
-  }
-  */
+
 
 
     numBlock = (threads + blockSize - 1) / blockSize;
@@ -97,18 +90,6 @@ bool* multithreaded_atkins_sieve(const int n = 100, int blockSize = 256) {
         residue_sieve_ker_2 << <1, threads >> > (d_primes, x, n);
         residue_sieve_ker_3 << <1, threads >> > (d_primes, x, n);
     }
-
-    //cudaMemcpy(primes, d_primes, size, cudaMemcpyDeviceToHost);
-
-    //Print primes without removing squares
-    /*
-    printf("Prime numbers with prime squares on the GPU:\n");
-    for (int i = 0; i < n; ++i) {
-        if (primes[i]) {
-            std::cout << i << "\n";
-        }
-    }
-    */
 
 
     //Second step in Atkins, Remove primes
@@ -125,15 +106,7 @@ bool* multithreaded_atkins_sieve(const int n = 100, int blockSize = 256) {
 
     cudaMemcpy(primes, d_primes, size, cudaMemcpyDeviceToHost);
 
-    /*
-    printf("Prime numbers on the GPU:\n");
-    for (int i = 0; i < n; ++i) {
-        if (primes[i]) {
-            std::cout << i << "\n";
-        }
-    }
 
-    */
     cudaFree(d_primes);
 
     primes[3] = primes[2] = true;
