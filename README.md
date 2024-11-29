@@ -1,8 +1,8 @@
 # MultiThreadedPrimeNumberSieves
 
 This is a repository of files used in a project for the lancaster undergraduate research conference: 
-Limiting Behaviour Of Multi-Threaded Prime Number Sieves
-B. Lowe
+B. Lowe. (2023) Limiting Behaviour Of Multi-Threaded Prime Number Sieves
+
 
 
 Conference poster will be made available after 15/03/2024
